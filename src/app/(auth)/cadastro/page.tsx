@@ -3,10 +3,10 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-} from '../../../../components/ui/card';
+} from '@/components/ui/card';
 import Link from 'next/link';
 import RegisterForm from './register-form';
-import { auth } from '../../../../auth';
+import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
 export default async function RegisterPage() {
@@ -27,7 +27,7 @@ export default async function RegisterPage() {
         </CardContent>
       </Card>
       <p className="text-sm text-muted-foreground mt-3">
-      Already registered?{' '}
+        Already registered?{' '}
         <Link className="text-gray-800 hover:underline" href="/login">
           Login
         </Link>

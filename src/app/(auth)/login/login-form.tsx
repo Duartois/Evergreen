@@ -7,8 +7,16 @@ import Form from 'next/form';
 import loginAction from './loginAction';
 import { useActionState } from 'react';
 
+type LoginFormState = {
+  success: boolean;
+  message?: string;
+} | null;
+
 export default function LoginForm() {
-  const [state, formAction, isPending] = useActionState(loginAction, null);
+  const [state, formAction, isPending] = useActionState<LoginFormState, FormData>(
+    loginAction,
+    null
+  );
 
   return (
     <>
@@ -24,14 +32,27 @@ export default function LoginForm() {
       <Form action={formAction}>
         <div>
           <Label>Email</Label>
-          <Input type="email" name="email" placeholder="your@email.com" />
+          <Input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            autoComplete="email"
+          />
         </div>
         <div>
           <Label>Password</Label>
-          <Input type="password" name="password" placeholder="********" />
+          <Input
+            type="password"
+            name="password"
+            placeholder="********"
+            required
+            autoComplete="current-password"
+            minLength={6}
+          />
         </div>
         <div>
-          <Button className="w-full mt-6" type="submit">
+          <Button className="w-full mt-6" type="submit" disabled={isPending}>
             Login
           </Button>
         </div>

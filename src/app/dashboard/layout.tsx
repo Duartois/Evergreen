@@ -1,5 +1,5 @@
 import Navbar from './navbar';
-import { auth } from '../../../auth';
+import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardLayout({
