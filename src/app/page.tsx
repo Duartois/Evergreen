@@ -16,10 +16,8 @@ import logo from './assets/logo.svg';
 import womanImg from './assets/woman.svg';
 import { auth } from '@/auth';
 
-
 export default async function Home() {
   const session = await auth();
-  const userName = session?.user?.name ?? '';
 
   return (
     <main>
@@ -33,33 +31,40 @@ export default async function Home() {
             <DropdownMenuContent className="mr-4">
               <DropdownMenuLabel>Menu</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <a href={'/#funcionamento'}>
-                <DropdownMenuItem>
-                Operational</DropdownMenuItem>
-              </a>
-              <DropdownMenuItem>Price</DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/login">
-                  <Button variant={'bg-white'}>Login</Button>
-                </Link>
+              <DropdownMenuItem asChild>
+                <Link href="/#funcionamento">Operational</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/#preco">Price</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/login">Login</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <div className="items-center gap-1 hidden md:flex ">
-            <Link href={'#funcionamento'}>
-              <Button className= "text-primary" variant={'link'}>Operational</Button>
+            <Link href="#funcionamento">
+              <Button className="text-primary" variant={'link'}>
+                Operational
+              </Button>
             </Link>
-            <Link href={'#preco'}>
-              <Button className= "text-primary" variant={'link'}>Price</Button>
+            <Link href="#preco">
+              <Button className="text-primary" variant={'link'}>
+                Price
+              </Button>
             </Link>
             {session && (
               <Link href="/dashboard">
-                <Button className= "text-primary" variant={'bg-white'}>Dashboard</Button>
+                <Button className="text-primary" variant={'bg-white'}>
+                  Dashboard
+                </Button>
               </Link>
             )}
             {!session && (
               <Link href="/login">
-                <Button className= "text-primary" variant={'bg-white'}>Login</Button>
+                <Button className="text-primary" variant={'bg-white'}>
+                  Login
+                </Button>
               </Link>
             )}
           </div>

@@ -1,5 +1,5 @@
-import { buttonVariants } from '../../../components/ui/button';
-import { cn } from '../../../lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { Download } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

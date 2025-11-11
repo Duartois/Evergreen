@@ -10,8 +10,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../../../components/ui/dropdown-menu';
-import { cn } from '../../../lib/utils';
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 import { User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Form from 'next/form';

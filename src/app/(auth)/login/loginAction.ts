@@ -2,25 +2,56 @@
 
 import { signIn } from '@/auth';
 import { isRedirectError } from 'next/dist/client/components/redirect-error';
-import { redirect } from 'next/navigation';
 
-export default async function loginAction(_prevState: any, formData: FormData) {
+type LoginActionState = {
+  success: boolean;
+  message?: string;
+};
+
+export default async function loginAction(
+  _prevState: LoginActionState | null,
+  formData: FormData
+): Promise<LoginActionState | null> {
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return {
+      success: false,
+      message: 'Please provide both email and password.',
+    };
+  }
+
   try {
     await signIn('credentials', {
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
+      email,
+      password,
       redirect: true,
       redirectTo: '/dashboard',
     });
-  } catch (e: any) {
-    if (isRedirectError(e)) {
-      throw e;
+  } catch (error) {
+    if (isRedirectError(error)) {
+      throw error;
     }
 
-    if (e.type === 'CredentialsSignin') {
-      return { success: false, message: 'Dados de login incorretos.' };
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'type' in error &&
+      error.type === 'CredentialsSignin'
+    ) {
+      return {
+        success: false,
+        message: 'We could not sign you in with those credentials.',
+      };
     }
-    console.error(e);
-    return { success: false, message: 'Ops, algum erro aconteceu!' };
+
+    console.error('Login failed', error);
+    return {
+      success: false,
+      message: 'Something went wrong while trying to sign you in.',
+    };
   }
+
+  return null;
 }

@@ -1,50 +1,81 @@
 'use server';
 
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import { hashSync } from 'bcrypt-ts';
 import { redirect } from 'next/navigation';
 
-export default async function registerAction(
-  _prevState: any,
-  formData: FormData
-) {
-  const entries = Array.from(formData.entries());
-  const data = Object.fromEntries(entries) as {
-    name: string;
-    email: string;
-    password: string;
-  };
+type RegisterActionState = {
+  success: boolean;
+  message?: string;
+};
 
-  // se não tiver email, nome ou senha, retorna erro
-  if (!data.email || !data.name || !data.password) {
+const MIN_PASSWORD_LENGTH = 6;
+
+export default async function registerAction(
+  _prevState: RegisterActionState | null,
+  formData: FormData
+): Promise<RegisterActionState | null> {
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  if (
+    typeof name !== 'string' ||
+    typeof email !== 'string' ||
+    typeof password !== 'string'
+  ) {
     return {
-      message: 'Preencha todos os campos',
       success: false,
+      message: 'All fields are required.',
     };
   }
 
-  // se um usuário já existe.
-  const user = await db.user.findUnique({
+  const trimmedName = name.trim();
+  const trimmedEmail = email.trim().toLowerCase();
+  const trimmedPassword = password.trim();
+
+  if (!trimmedName || !trimmedEmail || !trimmedPassword) {
+    return {
+      success: false,
+      message: 'All fields are required.',
+    };
+  }
+
+  if (!trimmedEmail.includes('@')) {
+    return {
+      success: false,
+      message: 'Please provide a valid email address.',
+    };
+  }
+
+  if (trimmedPassword.length < MIN_PASSWORD_LENGTH) {
+    return {
+      success: false,
+      message: `Your password must be at least ${MIN_PASSWORD_LENGTH} characters long.`,
+    };
+  }
+
+  const existingUser = await db.user.findUnique({
     where: {
-      email: data.email,
+      email: trimmedEmail,
     },
   });
 
-  if (user) {
+  if (existingUser) {
     return {
-      message: 'Este usuário já existe',
       success: false,
+      message: 'An account with this email already exists.',
     };
   }
 
-  // se não existir, cria o usuário
   await db.user.create({
     data: {
-      email: data.email,
-      name: data.name,
-      password: hashSync(data.password),
+      email: trimmedEmail,
+      name: trimmedName,
+      password: hashSync(trimmedPassword),
     },
   });
 
-  return redirect('/');
+  redirect('/login');
+  return null;
 }

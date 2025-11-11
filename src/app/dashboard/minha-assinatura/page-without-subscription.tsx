@@ -1,5 +1,5 @@
-import BannerWarning from '../../../../components/banner-warning';
-import PricingCard from '../../../../components/pricing-card';
+import BannerWarning from '@/components/banner-warning';
+import PricingCard from '@/components/pricing-card';
 
 export default async function MySubscription() {
   return (
