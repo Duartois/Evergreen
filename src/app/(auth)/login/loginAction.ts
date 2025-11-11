@@ -1,6 +1,7 @@
 'use server';
 
 import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation';
 
 type LoginActionState = {
@@ -44,6 +45,21 @@ export default async function loginAction(
     }
   } catch (error) {
     console.error('Login failed', error);
+
+    if (error instanceof AuthError) {
+      if (error.type === 'CredentialsSignin') {
+        return {
+          success: false,
+          message: 'We could not sign you in with those credentials.',
+        };
+      }
+
+      return {
+        success: false,
+        message: 'Something went wrong while trying to sign you in.',
+      };
+    }
+
     return {
       success: false,
       message: 'Something went wrong while trying to sign you in.',
