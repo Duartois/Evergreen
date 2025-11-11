@@ -1,7 +1,7 @@
 'use server';
 
 import { signIn } from '@/auth';
-import { isRedirectError } from 'next/dist/client/components/redirect-error';
+import { redirect } from 'next/navigation';
 
 type LoginActionState = {
   success: boolean;
@@ -23,35 +23,34 @@ export default async function loginAction(
   }
 
   try {
-    await signIn('credentials', {
+    const result = await signIn('credentials', {
       email,
       password,
-      redirect: true,
-      redirectTo: '/dashboard',
+      redirect: false,
     });
-  } catch (error) {
-    if (isRedirectError(error)) {
-      throw error;
-    }
 
-    if (
-      typeof error === 'object' &&
-      error !== null &&
-      'type' in error &&
-      error.type === 'CredentialsSignin'
-    ) {
+    if (result?.error === 'CredentialsSignin') {
       return {
         success: false,
         message: 'We could not sign you in with those credentials.',
       };
     }
 
+    if (result?.error) {
+      return {
+        success: false,
+        message: 'Something went wrong while trying to sign you in.',
+      };
+    }
+  } catch (error) {
     console.error('Login failed', error);
     return {
       success: false,
       message: 'Something went wrong while trying to sign you in.',
     };
   }
+
+  redirect('/dashboard');
 
   return null;
 }
