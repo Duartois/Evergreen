@@ -12,9 +12,16 @@ export async function findUserByCredentials(
   email: string,
   password: string
 ): Promise<User | null> {
+  const normalizedEmail = email.trim().toLowerCase();
+  const normalizedPassword = password.trim();
+
+  if (!normalizedEmail || !normalizedPassword) {
+    return null;
+  }
+
   const user = await db.user.findFirst({
     where: {
-      email: email,
+      email: normalizedEmail,
     },
   });
 
@@ -22,7 +29,7 @@ export async function findUserByCredentials(
     return null;
   }
 
-  const passwordMatch = compareSync(password, user.password);
+  const passwordMatch = compareSync(normalizedPassword, user.password);
 
   if (passwordMatch) {
     return {
