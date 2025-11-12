@@ -23,10 +23,20 @@ export default async function loginAction(
     };
   }
 
+  const trimmedEmail = email.trim().toLowerCase();
+  const trimmedPassword = password.trim();
+
+  if (!trimmedEmail || !trimmedPassword) {
+    return {
+      success: false,
+      message: 'Please provide both email and password.',
+    };
+  }
+
   try {
     const result = await signIn('credentials', {
-      email,
-      password,
+      email: trimmedEmail,
+      password: trimmedPassword,
       redirect: false,
     });
 
