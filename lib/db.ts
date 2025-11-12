@@ -9,6 +9,8 @@ declare global {
 
 const createPrismaClient = () => {
   const tursoUrl = process.env.TURSO_DATABASE_URL;
+  const datasourceUrl =
+    process.env.DATABASE_URL ?? tursoUrl ?? 'file:./prisma/dev.db';
 
   if (tursoUrl) {
     const tursoClient = createClient({
@@ -20,10 +22,13 @@ const createPrismaClient = () => {
 
     return new PrismaClient({
       adapter,
+      datasourceUrl,
     });
   }
 
-  return new PrismaClient();
+  return new PrismaClient({
+    datasourceUrl,
+  });
 };
 
 const db = globalThis.prisma ?? createPrismaClient();
