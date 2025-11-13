@@ -9,7 +9,13 @@ export default async function MonthlyBook() {
   return (
     <>
       <h1 className="text-3xl font-bold mb-6">Book of the Month</h1>
-      <Image src={bookImg} alt="Livro do mês" />
+      <Image
+        src={bookImg}
+        alt="Livro do mês"
+        width={bookImg.width}
+        height={bookImg.height}
+        priority
+      />
       <Link
         className={cn(
           'flex items-center justify-center gap-4 mt-10',

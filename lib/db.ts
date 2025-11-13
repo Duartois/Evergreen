@@ -1,6 +1,6 @@
+import { createClient } from '@libsql/client';
 import { PrismaClient } from '@prisma/client';
 import { PrismaLibSQL } from '@prisma/adapter-libsql';
-import { createClient } from '@libsql/client';
 
 declare global {
   // eslint-disable-next-line no-var

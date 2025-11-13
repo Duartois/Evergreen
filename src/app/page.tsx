@@ -23,7 +23,7 @@ export default async function Home() {
     <main>
       <section className="container mx-auto text-center pb-20 px-2 md:px-0">
         <nav className="flex justify-between items-center py-4">
-          <Image src={logo} alt="Logotipo" />
+          <Image src={logo} alt="Logotipo" width={191} height={40} priority />
           <DropdownMenu>
             <DropdownMenuTrigger>
               <MenuIcon size={24} className="md:hidden cursor-pointer" />
@@ -98,6 +98,8 @@ export default async function Home() {
             <Image
               src={womanImg}
               alt="Mulher carregando caixas"
+              width={392}
+              height={392}
               className="max-w-xs"
             />
             <ul className="md:text-2xl text-lg text-muted-foreground space-y-4 md:space-y-6 flex-shrink-0">
@@ -142,7 +144,13 @@ export default async function Home() {
         Do like thousands of other people. Subscribe to our product and have your studies guaranteed.{' '}
         </p>
         <footer className="mt-16 border-t border-gray-300 pt-10">
-          <Image src={logo} alt="Logotipo" className="mx-auto" />
+          <Image
+            src={logo}
+            alt="Logotipo"
+            width={191}
+            height={40}
+            className="mx-auto"
+          />
           <p className="text-muted-foreground">
             © 2024 SaasBook. All rights reserved.
           </p>
