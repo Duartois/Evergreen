@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaLibSQL } from '@prisma/adapter-libsql';
+import { createClient } from '@libsql/client';
 
 declare global {
   // eslint-disable-next-line no-var
@@ -11,10 +12,12 @@ const createPrismaClient = () => {
   const datasourceUrl = process.env.DATABASE_URL ?? 'file:./prisma/dev.db';
 
   if (tursoUrl) {
-    const adapter = new PrismaLibSQL({
+    const client = createClient({
       url: tursoUrl,
       authToken: process.env.TURSO_AUTH_TOKEN,
     });
+
+    const adapter = new PrismaLibSQL(client);
 
     return new PrismaClient({
       adapter,
