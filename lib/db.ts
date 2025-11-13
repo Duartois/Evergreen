@@ -12,10 +12,11 @@ const createPrismaClient = () => {
   const datasourceUrl = process.env.DATABASE_URL ?? 'file:./prisma/dev.db';
 
   if (tursoUrl) {
-    const adapter = new PrismaLibSQL({
+    const client = createClient({
       url: tursoUrl,
       authToken: process.env.TURSO_AUTH_TOKEN,
     });
+    const adapter = new PrismaLibSQL(client);
 
     return new PrismaClient({
       adapter,
