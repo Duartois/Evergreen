@@ -3,6 +3,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { findUserByCredentials } from './lib/user';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       credentials: {
@@ -10,9 +11,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
         const user = await findUserByCredentials(
-          credentials.email as string,
-          credentials.password as string
+          credentials.email,
+          credentials.password
         );
 
         return user;
