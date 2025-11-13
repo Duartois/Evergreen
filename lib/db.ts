@@ -1,5 +1,4 @@
 import type { Config as LibSQLConfig } from '@libsql/client';
-import { createClient } from '@libsql/client';
 import { PrismaLibSQL } from '@prisma/adapter-libsql';
 import { PrismaClient } from '@prisma/client';
 
@@ -18,8 +17,7 @@ const createPrismaClient = () => {
       authToken: process.env.TURSO_AUTH_TOKEN,
     };
 
-    const tursoClient = createClient(tursoConfig);
-    const adapter = new PrismaLibSQL(tursoClient);
+    const adapter = new PrismaLibSQL(tursoConfig);
 
     return new PrismaClient({
       adapter: adapter as any,
