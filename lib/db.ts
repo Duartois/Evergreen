@@ -1,3 +1,4 @@
+import { createClient } from '@libsql/client';
 import { PrismaClient } from '@prisma/client';
 import { PrismaLibSQL } from '@prisma/adapter-libsql';
 
