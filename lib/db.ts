@@ -22,7 +22,7 @@ const createPrismaClient = () => {
     const adapter = new PrismaLibSQL(tursoClient);
 
     return new PrismaClient({
-      adapter,
+      adapter: adapter as any,
     });
   }
 
