@@ -17,7 +17,7 @@ export default async function LoginPage() {
 
   return (
     <>
-      <Card className="max-w-sm w-full rounded-2xl mt-12 card-white">
+      <Card variant="white" className="max-w-sm w-full rounded-2xl mt-12">
         <CardHeader>
           <h2 className="text-primary text-xl font-bold">Welcome!</h2>
           <CardDescription>Log in with your email and password.</CardDescription>
