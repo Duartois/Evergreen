@@ -9,7 +9,7 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'SaasBook',
+  title: 'Evergreen',
   description:
     'Let us curate it for you. Subscribe to our platform and receive a new programming ebook every month.',
 };

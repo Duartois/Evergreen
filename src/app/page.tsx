@@ -55,14 +55,14 @@ export default async function Home() {
             </Link>
             {session && (
               <Link href="/dashboard">
-                <Button className="text-primary" variant={'bg-white'}>
+                <Button className="text-primary-foreground" variant={'bg-white'}>
                   Dashboard
                 </Button>
               </Link>
             )}
             {!session && (
               <Link href="/login">
-                <Button className="text-primary" variant={'bg-white'}>
+                <Button className="text-primary-foreground" variant={'bg-white'}>
                   Login
                 </Button>
               </Link>
@@ -91,7 +91,7 @@ export default async function Home() {
       </section>
       <section className="bg-white md:py-16 py-8" id="funcionamento">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold text-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-center text-secondary">
             How does it work?
           </h2>
           <div className="mx-24 xl:mx-80 flex flex-col md:flex-row items-center justify-between">
@@ -102,7 +102,7 @@ export default async function Home() {
               height={392}
               className="max-w-xs"
             />
-            <ul className="md:text-2xl text-lg text-muted-foreground space-y-4 md:space-y-6 flex-shrink-0">
+            <ul className="md:text-2xl text-lg text-muted space-y-4 md:space-y-6 flex-shrink-0">
               <li className="flex items-center justify-between gap-4">
               Access to 1 ebook per month{' '}
                 <Check size={24} className="text-green-600" />
@@ -120,7 +120,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="md:py-16 py-8 text-center px-2" id="preco">
-        <h2 className="md:text-6xl text-2xl font-bold md:mt-16">
+        <h2 className="md:text-6xl text-2xl font-bold md:mt-16 text-primary">
         Level up your skills to grow smarter
         </h2>
         <p className="text-primary mt-4 text-sm md:text-xl max-w-3xl mx-auto">
@@ -132,18 +132,18 @@ export default async function Home() {
         </div>
       </section>
       <section className="bg-white md:py-16 py-10 text-center">
-        <h2 className="md:text-6xl text-2xl font-bold md:mt-16">
+        <h2 className="md:text-6xl text-2xl font-bold md:mt-16 text-secondary">
         Don’t miss out, join now!
         </h2>
-        <p className="text-primary mt-4 text-sm md:text-xl max-w-3xl mx-auto">
+        <p className="text-secondary mt-4 text-sm md:text-xl max-w-3xl mx-auto">
           Faça como milhares de outras pessoas. Assine nosso produto e tenha
           garantido seus estudos{' '}
         </p>
-        <Button className="mt-14 w-96">Subscribe now</Button>
+        <Button className="mt-14 w-96 bg-secondary text-primary">Subscribe now</Button>
         <p className="text-xs text-muted-foreground mt-2">
         Do like thousands of other people. Subscribe to our product and have your studies guaranteed.{' '}
         </p>
-        <footer className="mt-16 border-t border-gray-300 pt-10">
+        <footer className="mt-16 border-t pt-10">
           <Image
             src={logo}
             alt="Logotipo"
