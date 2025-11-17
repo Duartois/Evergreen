@@ -71,6 +71,7 @@ body {
     @apply bg-background text-foreground;
   }
   footer{
-     @apply bg-background
+    background: url('./assets/noise.svg');
+    background-color: rgba(0, 44, 25, 0.582);
   }
 }
