@@ -80,3 +80,9 @@ body {
     background-color: rgba(0, 44, 25, 0.582);
   }
 }
+
+@layer components {
+  .card-white {
+    background-color: hsl(var(--card-white));
+  }
+}
