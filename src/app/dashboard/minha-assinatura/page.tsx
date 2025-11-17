@@ -21,7 +21,7 @@ export default async function MySubscription() {
 
 function PlanCard() {
   return (
-    <Card className="max-w-md w-full">
+    <Card className="max-w-md w-full text-secondary">
       <CardHeader>
         <CardTitle>Detalhes da Assinatura</CardTitle>
         <CardDescription>Informações sobre seu plano atual</CardDescription>
@@ -56,7 +56,7 @@ function PlanCard() {
 
 function ActionCard() {
   return (
-    <Card className="w-full max-w-sm h-full">
+    <Card className="w-full max-w-sm h-full text-secondary">
       <CardHeader>
         <CardTitle>Ações</CardTitle>
         <CardDescription>Gerencie sua assinatura</CardDescription>
