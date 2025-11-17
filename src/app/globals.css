@@ -11,7 +11,7 @@ body {
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
+    --card: 160 61.3% 14%;
     --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
@@ -69,6 +69,10 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+  header {
+    background: url('./assets/noise.svg');
+    background-color: rgba(0, 44, 25, 0.582);
   }
   footer{
     background: url('./assets/noise.svg');

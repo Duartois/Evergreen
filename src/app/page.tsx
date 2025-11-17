@@ -55,14 +55,14 @@ export default async function Home() {
             </Link>
             {session && (
               <Link href="/dashboard">
-                <Button className="text-primary-foreground" variant={'bg-white'}>
+                <Button className="text-secondary" variant={'bg-white'}>
                   Dashboard
                 </Button>
               </Link>
             )}
             {!session && (
               <Link href="/login">
-                <Button className="text-primary-foreground" variant={'bg-white'}>
+                <Button className="text-secondary" variant={'bg-white'}>
                   Login
                 </Button>
               </Link>
@@ -80,9 +80,9 @@ export default async function Home() {
             <Input
               placeholder="Enter your email"
               type="text"
-              className="max-w-sm border-primary border border-opacity-80 placeholder:text-primary placeholder:opacity-60"
+              className="max-w-sm border-primary border border-opacity-80 placeholder:text-secondary placeholder:opacity-60"
             />
-            <Button>Subscribe now</Button>
+            <Button className='text-secondary'>Subscribe now</Button>
           </div>
           <p className="text-primary-800 text-xs text-muted-foreground mt-2">
           Start your subscription now. Cancel anytime.{' '}
@@ -140,10 +140,10 @@ export default async function Home() {
           garantido seus estudos{' '}
         </p>
         <Button className="mt-14 w-96 bg-secondary text-primary">Subscribe now</Button>
-        <p className="text-xs text-muted-foreground mt-2">
+        <p className="text-xs text-secondary mt-2">
         Do like thousands of other people. Subscribe to our product and have your studies guaranteed.{' '}
         </p>
-        <footer className="mt-16 border-t pt-10">
+        <footer className="mt-16 border-t py-20 ">
           <Image
             src={logo}
             alt="Logotipo"
@@ -152,7 +152,7 @@ export default async function Home() {
             className="mx-auto"
           />
           <p className="text-muted-foreground">
-            © 2024 SaasBook. All rights reserved.
+            © 2024 Evergreen. All rights reserved.
           </p>
         </footer>
       </section>

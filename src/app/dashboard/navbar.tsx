@@ -21,7 +21,7 @@ export default function Navbar({ userName }: { userName: string }) {
   const pathname = usePathname();
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="text-gray-700 hover:text-gray-900">
