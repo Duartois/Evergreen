@@ -52,7 +52,7 @@ export default function LoginForm() {
           />
         </div>
         <div>
-          <Button className="w-full mt-6" type="submit" disabled={isPending}>
+          <Button className="w-full mt-6 bg-secondary text-primary" type="submit" disabled={isPending}>
             Login
           </Button>
         </div>

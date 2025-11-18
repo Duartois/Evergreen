@@ -17,9 +17,9 @@ export default async function RegisterPage() {
 
   return (
     <>
-      <Card className="max-w-sm w-full rounded-2xl mt-12">
+      <Card className="max-w-sm w-full rounded-2xl mt-12" variant="white">
         <CardHeader>
-          <h2 className="text-xl font-bold">Sign in</h2>
+          <h2 className="text-xl font-bold text-secondary">Sign in</h2>
           <CardDescription>Register for free.</CardDescription>
         </CardHeader>
         <CardContent>

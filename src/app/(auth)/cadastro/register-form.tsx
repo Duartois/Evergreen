@@ -62,7 +62,7 @@ export default function RegisterForm() {
           />
         </div>
         <div>
-          <Button disabled={isPending} className="w-full mt-6" type="submit">
+          <Button disabled={isPending} className="w-full mt-6 bg-secondary text-primary" type="submit">
             Register
           </Button>
         </div>
